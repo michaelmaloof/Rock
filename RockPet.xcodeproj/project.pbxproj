@@ -83,11 +83,11 @@
 		22F6FE6A1A1BE9B4005EDEDF /* RockPet */ = {
 			isa = PBXGroup;
 			children = (
+				22F6FE781A1BE9B4005EDEDF /* Main.storyboard */,
 				22F6FE6F1A1BE9B4005EDEDF /* AppDelegate.h */,
 				22F6FE701A1BE9B4005EDEDF /* AppDelegate.m */,
 				22F6FE751A1BE9B4005EDEDF /* ViewController.h */,
 				22F6FE761A1BE9B4005EDEDF /* ViewController.m */,
-				22F6FE781A1BE9B4005EDEDF /* Main.storyboard */,
 				22F6FE7B1A1BE9B4005EDEDF /* Images.xcassets */,
 				22F6FE7D1A1BE9B4005EDEDF /* LaunchScreen.xib */,
 				22F6FE721A1BE9B4005EDEDF /* RockPet.xcdatamodeld */,

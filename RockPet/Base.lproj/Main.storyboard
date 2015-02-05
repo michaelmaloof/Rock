@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2GT-KI-1Yl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,65 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="RockPet" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-Ez-WfP">
+                                <rect key="frame" x="280" y="280" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7Fc-e6-Oti"/>
+                                    <constraint firstAttribute="width" constant="40" id="Hdm-5I-nEK"/>
+                                    <constraint firstAttribute="height" constant="345" id="WMn-K1-XsR"/>
+                                    <constraint firstAttribute="height" constant="40" id="grQ-Nm-q0b"/>
+                                    <constraint firstAttribute="height" constant="40" id="xfe-FN-y3U"/>
+                                    <constraint firstAttribute="width" constant="400" id="yEo-ne-Hjp"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Fc-e6-Oti"/>
+                                        <exclude reference="Hdm-5I-nEK"/>
+                                        <exclude reference="WMn-K1-XsR"/>
+                                        <exclude reference="grQ-Nm-q0b"/>
+                                        <exclude reference="xfe-FN-y3U"/>
+                                        <exclude reference="yEo-ne-Hjp"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.60174239309210531" green="0.90892269736842102" blue="0.75218441611842102" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.60174239309999999" green="0.90892269739999998" blue="0.75218441609999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="eFM-Ez-WfP" secondAttribute="centerY" id="6WQ-pU-BTJ"/>
+                            <constraint firstAttribute="centerX" secondItem="eFM-Ez-WfP" secondAttribute="centerX" id="Tah-Nj-1XI"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JLa-MF-kYe"/>
+                    <connections>
+                        <outlet property="rock" destination="eFM-Ez-WfP" id="Ehe-v6-fks"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1252" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tqJ-NZ-s27">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2GT-KI-1Yl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h1F-pN-6Fh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iMa-nd-K5Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mr7-2q-OqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="440" y="1048"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="RockPet" width="592" height="483"/>
+    </resources>
 </document>
