@@ -418,6 +418,7 @@
 				22F6FE901A1BE9B4005EDEDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22F6FE911A1BE9B4005EDEDF /* Build configuration list for PBXNativeTarget "RockPetTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +427,7 @@
 				22F6FE931A1BE9B4005EDEDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
