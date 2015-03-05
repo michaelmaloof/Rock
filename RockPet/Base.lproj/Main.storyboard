@@ -16,11 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="RockPet" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-Ez-WfP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RockPet" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-Ez-WfP">
                                 <rect key="frame" x="280" y="280" width="40" height="40"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6eN-qF-U4o"/>
                                     <constraint firstAttribute="width" constant="40" id="7Fc-e6-Oti"/>
                                     <constraint firstAttribute="width" constant="40" id="Hdm-5I-nEK"/>
+                                    <constraint firstAttribute="width" constant="40" id="I4T-gd-YBE"/>
                                     <constraint firstAttribute="height" constant="345" id="WMn-K1-XsR"/>
                                     <constraint firstAttribute="height" constant="40" id="grQ-Nm-q0b"/>
                                     <constraint firstAttribute="height" constant="40" id="xfe-FN-y3U"/>
@@ -48,11 +50,13 @@
                     <navigationItem key="navigationItem" id="JLa-MF-kYe"/>
                     <connections>
                         <outlet property="rock" destination="eFM-Ez-WfP" id="Ehe-v6-fks"/>
+                        <outlet property="rockHeight" destination="6eN-qF-U4o" id="5bt-f2-0Fv"/>
+                        <outlet property="rockWidth" destination="I4T-gd-YBE" id="NZy-dG-wbY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252" y="387"/>
+            <point key="canvasLocation" x="1181" y="1048"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tqJ-NZ-s27">
