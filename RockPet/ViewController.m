@@ -109,12 +109,10 @@ static float const petFrequency = 25;  // in seconds
 
 -(void)updateDisplay{
     NSLog(@"age of rock at display %d", self.age);
-    if(self.age >18) {
+    if(self.age >=12) {
     NSString *day = @"days";
-    if(self.age == 1)
-        day = @"day";
         
-    self.ageDisplay.text = [NSString stringWithFormat:@"rock is %i %@ old",self.age,day];
+    self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.age,day];
     self.ageDisplay.hidden = NO;
     }
 }
@@ -140,7 +138,7 @@ static float const petFrequency = 25;  // in seconds
 }
 
 - (void) allowRockPetting{
-    if(self.age > 9){
+    if(self.age >=5 ){
     self.canPetRock = YES;
     }
 }
@@ -152,13 +150,17 @@ static float const petFrequency = 25;  // in seconds
 }
 
 -(void)updateSettingsLabel {
-    if(self.age > 15){
+    if(self.age >= 15){
         self.settingsLabel.hidden = NO;
     }
 }
 
 -(void)setRockAge {
     self.age = (int)roundf(self.daysSinceFirstDate);
+    
+    if(self.age >=5){
+        
+    }
 }
 
 
