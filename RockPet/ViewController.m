@@ -34,8 +34,12 @@ static float const petFrequency = 25;  // in seconds
 {
     [super viewDidLoad];
     
+    
     //Settings button isn't unlocked at first
     self.settingsLabel.hidden = YES;
+    
+    self.ageDisplay.hidden = YES;
+    //age display isn'y unlocked until rock can write well
     
     //Use NSLocalizedString to handle multiple languages
     //self.title = NSLocalizedString(@"sup","sup");
@@ -52,6 +56,9 @@ static float const petFrequency = 25;  // in seconds
     //Adjust the size of the rock from the initial width and height based on
     //your timeInterval that you already wrote.
     [self adjustRockSize];
+    
+    //This should be cleaned up so setAge isn't dependant on adjustRockSize
+    [self setRockAge];
     
     //Update Age display at bottom of view
     [self updateDisplay];
@@ -85,6 +92,8 @@ static float const petFrequency = 25;  // in seconds
     NSUserDefaults *firstDateDefault = [NSUserDefaults standardUserDefaults];
     [firstDateDefault setObject: stringFromDate forKey:@"firstDate"];
     NSLog(@"saved first date = %@", self.firstDate);
+    
+
 }
 
 -(void)adjustRockSize
@@ -96,16 +105,18 @@ static float const petFrequency = 25;  // in seconds
     //perform size adjustment
     self.rockWidth.constant = [self updateRockWidth];
     self.rockHeight.constant = [self updateRockHeight];
-        
 }
 
 -(void)updateDisplay{
+    NSLog(@"age of rock at display %d", self.age);
+    if(self.age >18) {
     NSString *day = @"days";
-    self.age = (int)roundf(self.daysSinceFirstDate);
     if(self.age == 1)
         day = @"day";
         
     self.ageDisplay.text = [NSString stringWithFormat:@"rock is %i %@ old",self.age,day];
+    self.ageDisplay.hidden = NO;
+    }
 }
 
 #pragma mark - Calculations
@@ -144,6 +155,10 @@ static float const petFrequency = 25;  // in seconds
     if(self.age > 15){
         self.settingsLabel.hidden = NO;
     }
+}
+
+-(void)setRockAge {
+    self.age = (int)roundf(self.daysSinceFirstDate);
 }
 
 
