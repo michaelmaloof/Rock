@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4F000BDA-1459-4457-BAFC-DB4400505EDA</string>
+	<string>4D1AAF3C-68D7-4EA8-9657-30044FFF49E0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>RockPet</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>6966C4F34B19134558C35ECC3B2128D329A52571</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Rock</string>
+			<string>RockPet</string>
 		</dict>
 	</array>
 </dict>

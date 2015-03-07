@@ -23,6 +23,7 @@ static float const petFrequency = 25;  // in seconds
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rockWidth;
 @property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
 @property (nonatomic) BOOL canPetRock;
+@property int age;
 
 @end
 
@@ -34,7 +35,6 @@ static float const petFrequency = 25;  // in seconds
     
     //Use NSLocalizedString to handle multiple languages
     //self.title = NSLocalizedString(@"sup","sup");
-    self.canPetRock = YES;
     
     //set date format to year, month, and day
     self.formatter = [[NSDateFormatter alloc] init];
@@ -95,11 +95,11 @@ static float const petFrequency = 25;  // in seconds
 
 -(void)updateDisplay{
     NSString *day = @"days";
-    int age = (int)roundf(self.daysSinceFirstDate);
-    if(age == 1)
+    self.age = (int)roundf(self.daysSinceFirstDate);
+    if(self.age == 1)
         day = @"day";
         
-    self.ageDisplay.text = [NSString stringWithFormat:@"rock is %i %@ old",age,day];
+    self.ageDisplay.text = [NSString stringWithFormat:@"rock is %i %@ old",self.age,day];
 }
 
 #pragma mark - Calculations
@@ -123,6 +123,7 @@ static float const petFrequency = 25;  // in seconds
 }
 
 - (void) allowRockPetting{
+    if(self.age > 9)
     self.canPetRock = YES;
 }
 
