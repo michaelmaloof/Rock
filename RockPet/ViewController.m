@@ -24,6 +24,7 @@ static float const petFrequency = 25;  // in seconds
 @property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
 @property (nonatomic) BOOL canPetRock;
 @property int age;
+@property (weak, nonatomic) IBOutlet UIButton *settingsLabel;
 
 @end
 
@@ -32,6 +33,9 @@ static float const petFrequency = 25;  // in seconds
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Settings button isn't unlocked at first
+    self.settingsLabel.hidden = YES;
     
     //Use NSLocalizedString to handle multiple languages
     //self.title = NSLocalizedString(@"sup","sup");
@@ -51,6 +55,8 @@ static float const petFrequency = 25;  // in seconds
     
     //Update Age display at bottom of view
     [self updateDisplay];
+    
+    [self updateSettingsLabel];
     
 }
 
@@ -123,14 +129,21 @@ static float const petFrequency = 25;  // in seconds
 }
 
 - (void) allowRockPetting{
-    if(self.age > 9)
+    if(self.age > 9){
     self.canPetRock = YES;
+    }
 }
 
 #pragma mark - Memory Warnings
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)updateSettingsLabel {
+    if(self.age > 15){
+        self.settingsLabel.hidden = NO;
+    }
 }
 
 

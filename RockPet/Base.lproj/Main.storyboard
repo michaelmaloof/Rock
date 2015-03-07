@@ -78,6 +78,7 @@
                         <outlet property="rock" destination="eFM-Ez-WfP" id="Ehe-v6-fks"/>
                         <outlet property="rockHeight" destination="6eN-qF-U4o" id="5bt-f2-0Fv"/>
                         <outlet property="rockWidth" destination="I4T-gd-YBE" id="NZy-dG-wbY"/>
+                        <outlet property="settingsLabel" destination="xIp-bF-6PD" id="u4C-UQ-xkl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
