@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		22F6FE6E1A1BE9B4005EDEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE6D1A1BE9B4005EDEDF /* main.m */; };
 		22F6FE711A1BE9B4005EDEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE701A1BE9B4005EDEDF /* AppDelegate.m */; };
-		22F6FE741A1BE9B4005EDEDF /* RockPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE721A1BE9B4005EDEDF /* RockPet.xcdatamodeld */; };
 		22F6FE771A1BE9B4005EDEDF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE761A1BE9B4005EDEDF /* ViewController.m */; };
 		22F6FE7A1A1BE9B4005EDEDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F6FE781A1BE9B4005EDEDF /* Main.storyboard */; };
 		22F6FE7C1A1BE9B4005EDEDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F6FE7B1A1BE9B4005EDEDF /* Images.xcassets */; };
 		22F6FE7F1A1BE9B4005EDEDF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22F6FE7D1A1BE9B4005EDEDF /* LaunchScreen.xib */; };
 		22F6FE8B1A1BE9B4005EDEDF /* RockPetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE8A1A1BE9B4005EDEDF /* RockPetTests.m */; };
+		2718B67A1AAA9DB40094F2C4 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718B6791AAA9DB40094F2C4 /* DismissSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +33,6 @@
 		22F6FE6D1A1BE9B4005EDEDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22F6FE6F1A1BE9B4005EDEDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		22F6FE701A1BE9B4005EDEDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		22F6FE731A1BE9B4005EDEDF /* RockPet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RockPet.xcdatamodel; sourceTree = "<group>"; };
 		22F6FE751A1BE9B4005EDEDF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		22F6FE761A1BE9B4005EDEDF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		22F6FE791A1BE9B4005EDEDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,6 +41,8 @@
 		22F6FE841A1BE9B4005EDEDF /* RockPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RockPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F6FE891A1BE9B4005EDEDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22F6FE8A1A1BE9B4005EDEDF /* RockPetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RockPetTests.m; sourceTree = "<group>"; };
+		2718B6781AAA9D9B0094F2C4 /* DismissSegue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
+		2718B6791AAA9DB40094F2C4 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +91,9 @@
 				22F6FE761A1BE9B4005EDEDF /* ViewController.m */,
 				22F6FE7B1A1BE9B4005EDEDF /* Images.xcassets */,
 				22F6FE7D1A1BE9B4005EDEDF /* LaunchScreen.xib */,
-				22F6FE721A1BE9B4005EDEDF /* RockPet.xcdatamodeld */,
 				22F6FE6B1A1BE9B4005EDEDF /* Supporting Files */,
+				2718B6781AAA9D9B0094F2C4 /* DismissSegue.h */,
+				2718B6791AAA9DB40094F2C4 /* DismissSegue.m */,
 			);
 			path = RockPet;
 			sourceTree = "<group>";
@@ -223,8 +225,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F6FE711A1BE9B4005EDEDF /* AppDelegate.m in Sources */,
-				22F6FE741A1BE9B4005EDEDF /* RockPet.xcdatamodeld in Sources */,
 				22F6FE771A1BE9B4005EDEDF /* ViewController.m in Sources */,
+				2718B67A1AAA9DB40094F2C4 /* DismissSegue.m in Sources */,
 				22F6FE6E1A1BE9B4005EDEDF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,19 +432,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		22F6FE721A1BE9B4005EDEDF /* RockPet.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				22F6FE731A1BE9B4005EDEDF /* RockPet.xcdatamodel */,
-			);
-			currentVersion = 22F6FE731A1BE9B4005EDEDF /* RockPet.xcdatamodel */;
-			path = RockPet.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 22F6FE601A1BE9B3005EDEDF /* Project object */;
 }
