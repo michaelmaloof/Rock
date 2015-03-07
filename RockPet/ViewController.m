@@ -9,8 +9,9 @@
 #import "ViewController.h"
 
 
-static float const initialWidth = 40;
-static float const initialHeight = 40;
+static float const initialWidth = 40;  // in pixels
+static float const initialHeight = 40; // in pixels
+static float const petFrequency = 25;  // in seconds
 
 @interface ViewController ()
 
@@ -20,6 +21,8 @@ static float const initialHeight = 40;
 @property (weak, nonatomic) IBOutlet UIImageView *rock;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rockHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rockWidth;
+@property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
+@property (nonatomic) BOOL canPetRock;
 
 @end
 
@@ -30,7 +33,8 @@ static float const initialHeight = 40;
     [super viewDidLoad];
     
     //Use NSLocalizedString to handle multiple languages
-    self.title = NSLocalizedString(@"sup","sup");
+    //self.title = NSLocalizedString(@"sup","sup");
+    self.canPetRock = YES;
     
     //set date format to year, month, and day
     self.formatter = [[NSDateFormatter alloc] init];
@@ -44,6 +48,9 @@ static float const initialHeight = 40;
     //Adjust the size of the rock from the initial width and height based on
     //your timeInterval that you already wrote.
     [self adjustRockSize];
+    
+    //Update Age display at bottom of view
+    [self updateDisplay];
     
 }
 
@@ -86,6 +93,15 @@ static float const initialHeight = 40;
         
 }
 
+-(void)updateDisplay{
+    NSString *day = @"days";
+    int age = (int)roundf(self.daysSinceFirstDate);
+    if(age == 1)
+        day = @"day";
+        
+    self.ageDisplay.text = [NSString stringWithFormat:@"rock is %i %@ old",age,day];
+}
+
 #pragma mark - Calculations
 -(float)updateRockWidth
 {
@@ -95,6 +111,19 @@ static float const initialHeight = 40;
 -(float)updateRockHeight
 {
     return initialHeight + self.daysSinceFirstDate;
+}
+
+#pragma mark - tap gesture recognizer
+- (IBAction)handleRockTouch:(UITapGestureRecognizer *)sender {
+    if(self.canPetRock){
+        NSLog(@"sup");
+        self.canPetRock = NO;
+        [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
+    }
+}
+
+- (void) allowRockPetting{
+    self.canPetRock = YES;
 }
 
 #pragma mark - Memory Warnings
