@@ -7,29 +7,20 @@
 //
 
 #import "ViewController.h"
+#import "Rock.h"
 
 
 static float const initialWidth = 40;  // in pixels
 static float const initialHeight = 40; // in pixels
 static float const petFrequency = 25;  // in seconds
 
-@interface ViewController ()
+@interface ViewController () <RockDelegate>
 
-@property NSDate *firstDate;
-@property NSDateFormatter *formatter;
-@property float daysSinceFirstDate;
-@property (weak, nonatomic) IBOutlet UIImageView *rock;
+@property Rock *rock;
+@property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
+@property (weak, nonatomic) IBOutlet UIButton *settingsLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rockHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rockWidth;
-@property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
-@property (nonatomic) BOOL canPetRock;
-@property int age;
-@property (weak, nonatomic) IBOutlet UIButton *settingsLabel;
-@property bool hasSentA;
-@property bool hasSentB;
-@property bool hasSentCDEF;
-@property bool hasSentGHIJ;
-@property bool hasSentZ;
 
 @end
 
@@ -39,6 +30,8 @@ static float const petFrequency = 25;  // in seconds
 {
     [super viewDidLoad];
     
+    self.rock = [[Rock alloc]init];
+    self.rock.delegate = self;
     
     //Settings button isn't unlocked at first
     self.settingsLabel.hidden = YES;
@@ -50,8 +43,8 @@ static float const petFrequency = 25;  // in seconds
     //self.title = NSLocalizedString(@"sup","sup");
     
     //set date format to year, month, and day
-    self.formatter = [[NSDateFormatter alloc] init];
-    [self.formatter setDateFormat: @"yyyy-MM-dd"];
+    self.rock.formatter = [[NSDateFormatter alloc] init];
+    [self.rock.formatter setDateFormat: @"yyyy-MM-dd"];
     
     //Rather than load a boolen value to see if the user has run the app before,
     //just load the first date and check for nil. If nil, it hasn't been run before,
@@ -83,8 +76,8 @@ static float const petFrequency = 25;  // in seconds
     if(firstDateString == (id)[NSNull null] || firstDateString.length == 0 ){
         [self setFirstDateDefault];
     }else{
-        self.firstDate = [self.formatter dateFromString:firstDateString];
-        NSLog(@"loaded first date = %@", self.firstDate);
+        self.rock.firstDate = [self.rock.formatter dateFromString:firstDateString];
+        NSLog(@"loaded first date = %@", self.rock.firstDate);
     }
 }
 
@@ -94,11 +87,11 @@ static float const petFrequency = 25;  // in seconds
     //The firstDate won't persist using NSUserDefaults. If the user deletes the app
     //and then reinstalls, they will need to start over at 40 X 40
     //If you want the firstDate to persist through deletes, use the keychain
-    self.firstDate = [NSDate date];
-    NSString *stringFromDate = [self.formatter stringFromDate:self.firstDate];
+    self.rock.firstDate = [NSDate date];
+    NSString *stringFromDate = [self.rock.formatter stringFromDate:self.rock.firstDate];
     NSUserDefaults *firstDateDefault = [NSUserDefaults standardUserDefaults];
     [firstDateDefault setObject: stringFromDate forKey:@"firstDate"];
-    NSLog(@"saved first date = %@", self.firstDate);
+    NSLog(@"saved first date = %@", self.rock.firstDate);
     
 
 }
@@ -106,8 +99,8 @@ static float const petFrequency = 25;  // in seconds
 -(void)adjustRockSize
 {
     //find time between user's first date and today
-    self.daysSinceFirstDate = [[NSDate date] timeIntervalSinceDate:self.firstDate]/86400;
-    NSLog(@"Rock is %f day(s) old", self.daysSinceFirstDate);
+    self.rock.daysSinceFirstDate = [[NSDate date] timeIntervalSinceDate:self.rock.firstDate]/86400;
+    NSLog(@"Rock is %f day(s) old", self.rock.daysSinceFirstDate);
     
     //perform size adjustment
     self.rockWidth.constant = [self updateRockWidth];
@@ -115,11 +108,11 @@ static float const petFrequency = 25;  // in seconds
 }
 
 -(void)updateDisplay{
-    NSLog(@"age of rock at display %d", self.age);
-    if(self.age >= 12) {
+    NSLog(@"age of rock at display %d", self.rock.age);
+    if(self.rock.age >= 12) {
     NSString *day = @"days";
         
-    self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.age,day];
+    self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.rock.age,day];
     self.ageDisplay.hidden = NO;
     }
 }
@@ -127,26 +120,23 @@ static float const petFrequency = 25;  // in seconds
 #pragma mark - Calculations
 -(float)updateRockWidth
 {
-    return initialWidth + self.daysSinceFirstDate;
+    return initialWidth + self.rock.daysSinceFirstDate;
 }
 
 -(float)updateRockHeight
 {
-    return initialHeight + self.daysSinceFirstDate;
+    return initialHeight + self.rock.daysSinceFirstDate;
 }
 
 #pragma mark - tap gesture recognizer
 - (IBAction)handleRockTouch:(UITapGestureRecognizer *)sender {
-    if(self.canPetRock){
-        NSLog(@"sup");
-        self.canPetRock = NO;
-        [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
-    }
+    
+    [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
 }
 
 - (void) allowRockPetting{
-    if(self.age >= 5 ){
-    self.canPetRock = YES;
+    if(self.rock.age >= 5 ){
+    self.rock.canPetRock = YES;
     }
 }
 
@@ -157,7 +147,7 @@ static float const petFrequency = 25;  // in seconds
 }
 
 -(void)updateSettingsLabel {
-    if(self.age >= 15){
+    if(self.rock.age >= 15){
         self.settingsLabel.hidden = NO;
     }
 }
@@ -165,15 +155,15 @@ static float const petFrequency = 25;  // in seconds
 -(void)setRockAge {
     
     //We should make this so it isn't dependant on selfDaysSinceFirsDate
-    self.age = (int)roundf(self.daysSinceFirstDate);
-    
+    self.rock.age = (int)roundf(self.rock.daysSinceFirstDate);
+
 }
 
 -(void)askNotificationPermission{
     
     //We won't ask for permission until the rock is 5. Is there anyway to change how we word it? We should tell the user Rock has learned to talk and thus we need notification permission
     
-    if (self.age >= 5) {
+    if (self.rock.age >= 5) {
     
     UIUserNotificationType types = UIUserNotificationTypeBadge |
     UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
@@ -198,7 +188,7 @@ static float const petFrequency = 25;  // in seconds
     
     //The rock will send the letter "A". He is learning the alphabet
     
-    if(self.hasSentA == NO) {
+    if(self.rock.hasSentA == NO) {
     
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:86400];
@@ -209,7 +199,7 @@ static float const petFrequency = 25;  // in seconds
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         
     //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-    self.hasSentA = YES;
+    self.rock.hasSentA = YES;
     }
 }
 
@@ -217,7 +207,7 @@ static float const petFrequency = 25;  // in seconds
 
 -(void)createLetterBNotification{
     
-    if(self.hasSentB == NO) {
+    if(self.rock.hasSentB == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:172800];
@@ -228,13 +218,13 @@ static float const petFrequency = 25;  // in seconds
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         
         //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.hasSentB = YES;
+        self.rock.hasSentB = YES;
     }
 }
 
 -(void)createLetterCDEFNotification{
     
-    if(self.hasSentCDEF == NO) {
+    if(self.rock.hasSentCDEF == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:259200];
@@ -245,14 +235,14 @@ static float const petFrequency = 25;  // in seconds
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         
         //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.hasSentCDEF = YES;
+        self.rock.hasSentCDEF = YES;
     }
 }
 
 
 -(void)createLetterGHIJNotification{
     
-    if(self.hasSentGHIJ == NO) {
+    if(self.rock.hasSentGHIJ == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:345600];
@@ -263,13 +253,13 @@ static float const petFrequency = 25;  // in seconds
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         
         //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.hasSentGHIJ = YES;
+        self.rock.hasSentGHIJ = YES;
     }
 }
 
 -(void)createLetterZNotification{
     
-    if(self.hasSentZ == NO) {
+    if(self.rock.hasSentZ == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:432000];
@@ -280,9 +270,28 @@ static float const petFrequency = 25;  // in seconds
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         
         //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.hasSentZ = YES;
+        self.rock.hasSentZ = YES;
     }
 }
+
+-(void)rockWasTapped:(Rock*)sender{
+    if(self.rock.hasRockLearnedToTalk == NO)
+    {
+        if(self.rock.age >= 5)
+        {
+            self.rock.hasRockLearnedToTalk = YES;
+        }
+    }
+    
+    if(self.rock.hasRockLearnedToTalk == YES)
+    {
+        NSLog(@"sup");
+        self.rock.canPetRock = NO;
+    }
+    
+}
+
+
 
 
 

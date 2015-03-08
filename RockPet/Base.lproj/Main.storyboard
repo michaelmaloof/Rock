@@ -17,7 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RockPet" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-Ez-WfP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="rock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXh-ue-WxY">
+                                <rect key="frame" x="16" y="559" width="568" height="21"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                <color key="textColor" red="0.79607843137254897" green="0.48627450980392156" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIp-bF-6PD">
+                                <rect key="frame" x="538" y="562" width="46" height="30"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" red="0.53725490196078429" green="0.77512083575206392" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2GT-KI-1Yl" kind="presentation" id="B0c-w7-dCd"/>
+                                </connections>
+                            </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RockPet" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-Ez-WfP" customClass="Rock">
                                 <rect key="frame" x="280" y="280" width="40" height="40"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -41,25 +57,9 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Umh-bm-GCg" appends="YES" id="IHF-GF-20f"/>
+                                    <outletCollection property="gestureRecognizers" destination="9Ct-vT-2kM" appends="YES" id="0PS-kr-iuc"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="rock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXh-ue-WxY">
-                                <rect key="frame" x="16" y="559" width="568" height="21"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
-                                <color key="textColor" red="0.79607843137254897" green="0.48627450980392156" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIp-bF-6PD">
-                                <rect key="frame" x="538" y="562" width="46" height="30"/>
-                                <state key="normal" title="">
-                                    <color key="titleColor" red="0.53725490196078429" green="0.77512083575206392" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="2GT-KI-1Yl" kind="presentation" id="B0c-w7-dCd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.60174239309210531" green="0.90892269736842102" blue="0.75218441611842102" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.60174239309999999" green="0.90892269739999998" blue="0.75218441609999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,9 +82,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Umh-bm-GCg" userLabel="rock Tap Gesture Recognizer">
+                <tapGestureRecognizer id="9Ct-vT-2kM" userLabel="Rock Gesture Recognizer">
                     <connections>
-                        <action selector="handleRockTouch:" destination="BYZ-38-t0r" id="Yum-kd-VAN"/>
+                        <action selector="rockWasTapped:" destination="eFM-Ez-WfP" id="0lJ-AZ-5ji"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

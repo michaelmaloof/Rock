@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		225FAF6B1AACF905001BA9A7 /* Rock.m in Sources */ = {isa = PBXBuildFile; fileRef = 225FAF6A1AACF905001BA9A7 /* Rock.m */; };
 		22F6FE6E1A1BE9B4005EDEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE6D1A1BE9B4005EDEDF /* main.m */; };
 		22F6FE711A1BE9B4005EDEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE701A1BE9B4005EDEDF /* AppDelegate.m */; };
 		22F6FE771A1BE9B4005EDEDF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6FE761A1BE9B4005EDEDF /* ViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		225FAF691AACF905001BA9A7 /* Rock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rock.h; sourceTree = "<group>"; };
+		225FAF6A1AACF905001BA9A7 /* Rock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock.m; sourceTree = "<group>"; };
 		22F6FE681A1BE9B4005EDEDF /* RockPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F6FE6C1A1BE9B4005EDEDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22F6FE6D1A1BE9B4005EDEDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				22F6FE701A1BE9B4005EDEDF /* AppDelegate.m */,
 				22F6FE751A1BE9B4005EDEDF /* ViewController.h */,
 				22F6FE761A1BE9B4005EDEDF /* ViewController.m */,
+				225FAF691AACF905001BA9A7 /* Rock.h */,
+				225FAF6A1AACF905001BA9A7 /* Rock.m */,
 				22F6FE7B1A1BE9B4005EDEDF /* Images.xcassets */,
 				22F6FE7D1A1BE9B4005EDEDF /* LaunchScreen.xib */,
 				22F6FE6B1A1BE9B4005EDEDF /* Supporting Files */,
@@ -224,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225FAF6B1AACF905001BA9A7 /* Rock.m in Sources */,
 				22F6FE711A1BE9B4005EDEDF /* AppDelegate.m in Sources */,
 				22F6FE771A1BE9B4005EDEDF /* ViewController.m in Sources */,
 				2718B67A1AAA9DB40094F2C4 /* DismissSegue.m in Sources */,
