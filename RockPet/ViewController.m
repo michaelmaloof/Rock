@@ -25,6 +25,11 @@ static float const petFrequency = 25;  // in seconds
 @property (nonatomic) BOOL canPetRock;
 @property int age;
 @property (weak, nonatomic) IBOutlet UIButton *settingsLabel;
+@property bool hasSentA;
+@property bool hasSentB;
+@property bool hasSentCDEF;
+@property bool hasSentGHIJ;
+@property bool hasSentZ;
 
 @end
 
@@ -64,6 +69,8 @@ static float const petFrequency = 25;  // in seconds
     [self updateDisplay];
     
     [self updateSettingsLabel];
+    
+    [self askNotificationPermission];
     
 }
 
@@ -109,7 +116,7 @@ static float const petFrequency = 25;  // in seconds
 
 -(void)updateDisplay{
     NSLog(@"age of rock at display %d", self.age);
-    if(self.age >=12) {
+    if(self.age >= 12) {
     NSString *day = @"days";
         
     self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.age,day];
@@ -138,7 +145,7 @@ static float const petFrequency = 25;  // in seconds
 }
 
 - (void) allowRockPetting{
-    if(self.age >=5 ){
+    if(self.age >= 5 ){
     self.canPetRock = YES;
     }
 }
@@ -156,13 +163,126 @@ static float const petFrequency = 25;  // in seconds
 }
 
 -(void)setRockAge {
+    
+    //We should make this so it isn't dependant on selfDaysSinceFirsDate
     self.age = (int)roundf(self.daysSinceFirstDate);
     
-    if(self.age >=5){
+}
+
+-(void)askNotificationPermission{
+    
+    //We won't ask for permission until the rock is 5. Is there anyway to change how we word it? We should tell the user Rock has learned to talk and thus we need notification permission
+    
+    if (self.age >= 5) {
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    UIUserNotificationSettings *mySettings =
+    [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+        
+    //What if the user doesn't accept notifications and then goes into the settings and accepts? Then these methods below wont trigger? Or will they?
+    
+        [self createLetterANotification];
+        [self createLetterBNotification];
+        [self createLetterCDEFNotification];
+        [self createLetterGHIJNotification];
+        [self createLetterZNotification];
         
     }
 }
 
+-(void)createLetterANotification{
+    
+    //The rock will send the letter "A". He is learning the alphabet
+    
+    if(self.hasSentA == NO) {
+    
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    localNotification.alertBody = @"A";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+    //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+    self.hasSentA = YES;
+    }
+}
+
+
+
+-(void)createLetterBNotification{
+    
+    if(self.hasSentB == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:2];
+        localNotification.alertBody = @"B";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentB = YES;
+    }
+}
+
+-(void)createLetterCDEFNotification{
+    
+    if(self.hasSentCDEF == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:3];
+        localNotification.alertBody = @"C D E F";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentCDEF = YES;
+    }
+}
+
+
+-(void)createLetterGHIJNotification{
+    
+    if(self.hasSentGHIJ == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:4];
+        localNotification.alertBody = @"G H I J K L M N O P Q R S T U V W X Y";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentGHIJ = YES;
+    }
+}
+
+-(void)createLetterZNotification{
+    
+    if(self.hasSentZ == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+        localNotification.alertBody = @"Z Z Z Z Z";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentZ = YES;
+    }
+}
 
 
 
