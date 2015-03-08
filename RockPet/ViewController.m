@@ -201,7 +201,7 @@ static float const petFrequency = 25;  // in seconds
     if(self.hasSentA == NO) {
     
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:86400];
     localNotification.alertBody = @"A";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
@@ -220,7 +220,7 @@ static float const petFrequency = 25;  // in seconds
     if(self.hasSentB == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:2];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:172800];
         localNotification.alertBody = @"B";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
@@ -237,7 +237,7 @@ static float const petFrequency = 25;  // in seconds
     if(self.hasSentCDEF == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:3];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:259200];
         localNotification.alertBody = @"C D E F";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
@@ -255,7 +255,7 @@ static float const petFrequency = 25;  // in seconds
     if(self.hasSentGHIJ == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:4];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:345600];
         localNotification.alertBody = @"G H I J K L M N O P Q R S T U V W X Y";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
@@ -272,7 +272,7 @@ static float const petFrequency = 25;  // in seconds
     if(self.hasSentZ == NO) {
         
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:432000];
         localNotification.alertBody = @"Z Z Z Z Z";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
