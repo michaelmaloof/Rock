@@ -30,7 +30,6 @@ static float const petFrequency = 25;  // in seconds
 {
     [super viewDidLoad];
     
-    self.rock = [[Rock alloc]init];
     self.rock.delegate = self;
     
     //Settings button isn't unlocked at first
@@ -49,14 +48,14 @@ static float const petFrequency = 25;  // in seconds
     //Rather than load a boolen value to see if the user has run the app before,
     //just load the first date and check for nil. If nil, it hasn't been run before,
     //so, save the current date as the first date and continue
-    [self loadFirstDateDefault];
+    [self.rock loadFirstDateDefault];
+    
+    //This should be cleaned up so setAge isn't dependant on adjustRockSize
+    [self.rock setRockAge];
     
     //Adjust the size of the rock from the initial width and height based on
     //your timeInterval that you already wrote.
     [self adjustRockSize];
-    
-    //This should be cleaned up so setAge isn't dependant on adjustRockSize
-    [self setRockAge];
     
     //Update Age display at bottom of view
     [self updateDisplay];
@@ -68,50 +67,19 @@ static float const petFrequency = 25;  // in seconds
 }
 
 #pragma mark - Methods
--(void)loadFirstDateDefault
-{
-    //load users first date on the app and convert from string to date
-    NSUserDefaults *firstDateDefault = [NSUserDefaults standardUserDefaults];
-    NSString *firstDateString = [firstDateDefault stringForKey:@"firstDate"];
-    if(firstDateString == (id)[NSNull null] || firstDateString.length == 0 ){
-        [self setFirstDateDefault];
-    }else{
-        self.rock.firstDate = [self.rock.formatter dateFromString:firstDateString];
-        NSLog(@"loaded first date = %@", self.rock.firstDate);
-    }
-}
-
--(void)setFirstDateDefault
-{
-    //turn today's date into a string and save it
-    //The firstDate won't persist using NSUserDefaults. If the user deletes the app
-    //and then reinstalls, they will need to start over at 40 X 40
-    //If you want the firstDate to persist through deletes, use the keychain
-    self.rock.firstDate = [NSDate date];
-    NSString *stringFromDate = [self.rock.formatter stringFromDate:self.rock.firstDate];
-    NSUserDefaults *firstDateDefault = [NSUserDefaults standardUserDefaults];
-    [firstDateDefault setObject: stringFromDate forKey:@"firstDate"];
-    NSLog(@"saved first date = %@", self.rock.firstDate);
-    
-
-}
 
 -(void)adjustRockSize
 {
-    //find time between user's first date and today
-    self.rock.daysSinceFirstDate = [[NSDate date] timeIntervalSinceDate:self.rock.firstDate]/86400;
-    NSLog(@"Rock is %f day(s) old", self.rock.daysSinceFirstDate);
-    
     //perform size adjustment
     self.rockWidth.constant = [self updateRockWidth];
     self.rockHeight.constant = [self updateRockHeight];
 }
 
--(void)updateDisplay{
-    NSLog(@"age of rock at display %d", self.rock.age);
-    if(self.rock.age >= 12) {
+-(void)updateDisplay
+{
+    if(self.rock.age >= 12)        
+    {
     NSString *day = @"days";
-        
     self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.rock.age,day];
     self.ageDisplay.hidden = NO;
     }
@@ -120,23 +88,21 @@ static float const petFrequency = 25;  // in seconds
 #pragma mark - Calculations
 -(float)updateRockWidth
 {
-    return initialWidth + self.rock.daysSinceFirstDate;
+    return initialWidth + self.rock.age;
 }
 
 -(float)updateRockHeight
 {
-    return initialHeight + self.rock.daysSinceFirstDate;
+    return initialHeight + self.rock.age;
 }
 
 #pragma mark - tap gesture recognizer
-- (IBAction)handleRockTouch:(UITapGestureRecognizer *)sender {
-    
-    [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
-}
+
 
 - (void) allowRockPetting{
-    if(self.rock.age >= 5 ){
-    self.rock.canPetRock = YES;
+    if(self.rock.age >= 5 )
+    {
+        self.rock.canPetRock = YES;
     }
 }
 
@@ -146,17 +112,12 @@ static float const petFrequency = 25;  // in seconds
     [super didReceiveMemoryWarning];
 }
 
--(void)updateSettingsLabel {
-    if(self.rock.age >= 15){
+-(void)updateSettingsLabel
+{
+    if(self.rock.age >= 15)
+    {
         self.settingsLabel.hidden = NO;
     }
-}
-
--(void)setRockAge {
-    
-    //We should make this so it isn't dependant on selfDaysSinceFirsDate
-    self.rock.age = (int)roundf(self.rock.daysSinceFirstDate);
-
 }
 
 -(void)askNotificationPermission{
@@ -274,21 +235,9 @@ static float const petFrequency = 25;  // in seconds
     }
 }
 
--(void)rockWasTapped:(Rock*)sender{
-    if(self.rock.hasRockLearnedToTalk == NO)
-    {
-        if(self.rock.age >= 5)
-        {
-            self.rock.hasRockLearnedToTalk = YES;
-        }
-    }
-    
-    if(self.rock.hasRockLearnedToTalk == YES)
-    {
-        NSLog(@"sup");
-        self.rock.canPetRock = NO;
-    }
-    
+-(void)rockWasTapped:(Rock*)sender
+{
+    [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
 }
 
 
