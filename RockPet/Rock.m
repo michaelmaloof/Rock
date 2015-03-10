@@ -8,9 +8,9 @@
 
 #import "Rock.h"
 
+static float const petFrequency = 25;  // in seconds
+
 @implementation Rock
-
-
 
 -(IBAction)rockWasTapped:(UITapGestureRecognizer *)sender
 {
@@ -27,7 +27,6 @@
         NSLog(@"sup");
         self.canPetRock = NO;
     }
-    [self.delegate rockWasTapped:self];
 }
 
 -(void)loadFirstDateDefault
@@ -63,6 +62,122 @@
     self.age = (int)roundf(self.daysSinceFirstDate);
 }
 
+
+- (void)allowRockPetting{
+    if(self.age >= 5 )
+    {
+        self.canPetRock = YES;
+    }
+}
+
+-(void)rockSpeaks
+{
+    [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma Notifications
+
+-(void)createLetterANotification{
+    
+    //The rock will send the letter "A". He is learning the alphabet
+    
+    if(self.hasSentA == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:86400];
+        localNotification.alertBody = @"A";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentA = YES;
+    }
+}
+
+
+
+-(void)createLetterBNotification{
+    
+    if(self.hasSentB == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:172800];
+        localNotification.alertBody = @"B";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentB = YES;
+    }
+}
+
+-(void)createLetterCDEFNotification{
+    
+    if(self.hasSentCDEF == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:259200];
+        localNotification.alertBody = @"C D E F";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentCDEF = YES;
+    }
+}
+
+
+-(void)createLetterGHIJNotification{
+    
+    if(self.hasSentGHIJ == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:345600];
+        localNotification.alertBody = @"G H I J K L M N O P Q R S T U V W X Y";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentGHIJ = YES;
+    }
+}
+
+-(void)createLetterZNotification{
+    
+    if(self.hasSentZ == NO) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:432000];
+        localNotification.alertBody = @"Z Z Z Z Z";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
+        self.hasSentZ = YES;
+    }
+}
 
 
 @end

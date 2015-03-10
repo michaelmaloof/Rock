@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol RockDelegate
--(void)rockWasTapped:(id)sender;
-
-
-@end
-
 @interface Rock : UIImageView
 
 @property NSDate *firstDate;
@@ -27,11 +21,21 @@
 @property bool hasSentGHIJ;
 @property bool hasSentZ;
 @property bool hasRockLearnedToTalk;
-@property id<RockDelegate>delegate;
+
 
 -(void)loadFirstDateDefault;
 -(void)setFirstDateDefault;
 -(void)setRockAge;
+-(void)allowRockPetting;
+
+-(void)createLetterANotification;
+-(void)createLetterBNotification;
+-(void)createLetterCDEFNotification;
+-(void)createLetterGHIJNotification;
+-(void)createLetterZNotification;
+    
+
+
 
 @end
 

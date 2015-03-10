@@ -12,9 +12,8 @@
 
 static float const initialWidth = 40;  // in pixels
 static float const initialHeight = 40; // in pixels
-static float const petFrequency = 25;  // in seconds
 
-@interface ViewController () <RockDelegate>
+@interface ViewController ()
 
 @property Rock *rock;
 @property (strong, nonatomic) IBOutlet UILabel *ageDisplay;
@@ -30,7 +29,6 @@ static float const petFrequency = 25;  // in seconds
 {
     [super viewDidLoad];
     
-    self.rock.delegate = self;
     
     //Settings button isn't unlocked at first
     self.settingsLabel.hidden = YES;
@@ -79,9 +77,9 @@ static float const petFrequency = 25;  // in seconds
 {
     if(self.rock.age >= 12)        
     {
-    NSString *day = @"days";
-    self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.rock.age,day];
-    self.ageDisplay.hidden = NO;
+        NSString *day = @"days";
+        self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.rock.age,day];
+        self.ageDisplay.hidden = NO;
     }
 }
 
@@ -96,15 +94,6 @@ static float const petFrequency = 25;  // in seconds
     return initialHeight + self.rock.age;
 }
 
-#pragma mark - tap gesture recognizer
-
-
-- (void) allowRockPetting{
-    if(self.rock.age >= 5 )
-    {
-        self.rock.canPetRock = YES;
-    }
-}
 
 #pragma mark - Memory Warnings
 - (void)didReceiveMemoryWarning
@@ -136,109 +125,16 @@ static float const petFrequency = 25;  // in seconds
         
     //What if the user doesn't accept notifications and then goes into the settings and accepts? Then these methods below wont trigger? Or will they?
     
-        [self createLetterANotification];
-        [self createLetterBNotification];
-        [self createLetterCDEFNotification];
-        [self createLetterGHIJNotification];
-        [self createLetterZNotification];
+        [self.rock createLetterANotification];
+        [self.rock createLetterBNotification];
+        [self.rock createLetterCDEFNotification];
+        [self.rock createLetterGHIJNotification];
+        [self.rock createLetterZNotification];
         
     }
 }
 
--(void)createLetterANotification{
-    
-    //The rock will send the letter "A". He is learning the alphabet
-    
-    if(self.rock.hasSentA == NO) {
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:86400];
-    localNotification.alertBody = @"A";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-    //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-    self.rock.hasSentA = YES;
-    }
-}
 
-
-
--(void)createLetterBNotification{
-    
-    if(self.rock.hasSentB == NO) {
-        
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:172800];
-        localNotification.alertBody = @"B";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.rock.hasSentB = YES;
-    }
-}
-
--(void)createLetterCDEFNotification{
-    
-    if(self.rock.hasSentCDEF == NO) {
-        
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:259200];
-        localNotification.alertBody = @"C D E F";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.rock.hasSentCDEF = YES;
-    }
-}
-
-
--(void)createLetterGHIJNotification{
-    
-    if(self.rock.hasSentGHIJ == NO) {
-        
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:345600];
-        localNotification.alertBody = @"G H I J K L M N O P Q R S T U V W X Y";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.rock.hasSentGHIJ = YES;
-    }
-}
-
--(void)createLetterZNotification{
-    
-    if(self.rock.hasSentZ == NO) {
-        
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:432000];
-        localNotification.alertBody = @"Z Z Z Z Z";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        //We need to save these boolean values. Ideally we use core data and save the Rock class which will have all these boolean datas.
-        self.rock.hasSentZ = YES;
-    }
-}
-
--(void)rockWasTapped:(Rock*)sender
-{
-    [self performSelector:@selector(allowRockPetting) withObject:nil afterDelay:petFrequency];
-}
 
 
 
