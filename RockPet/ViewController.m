@@ -12,6 +12,9 @@
 
 static float const initialWidth = 40;  // in pixels
 static float const initialHeight = 40; // in pixels
+static float const minimumDisplayAge = 12; //in days
+static float const minimumSettingsAge = 15; //in days
+static float const minimumTalkAge = 5; //in days
 
 @interface ViewController ()
 
@@ -75,11 +78,19 @@ static float const initialHeight = 40; // in pixels
 
 -(void)updateDisplay
 {
-    if(self.rock.age >= 12)        
+    if(self.rock.age >= minimumDisplayAge)
     {
         NSString *day = @"days";
         self.ageDisplay.text = [NSString stringWithFormat:@"I is %i %@ old",self.rock.age,day];
         self.ageDisplay.hidden = NO;
+    }
+}
+
+-(void)updateSettingsLabel
+{
+    if(self.rock.age >= minimumSettingsAge)
+    {
+        self.settingsLabel.hidden = NO;
     }
 }
 
@@ -101,19 +112,12 @@ static float const initialHeight = 40; // in pixels
     [super didReceiveMemoryWarning];
 }
 
--(void)updateSettingsLabel
-{
-    if(self.rock.age >= 15)
-    {
-        self.settingsLabel.hidden = NO;
-    }
-}
-
+#pragma mark - Notifications
 -(void)askNotificationPermission{
     
     //We won't ask for permission until the rock is 5. Is there anyway to change how we word it? We should tell the user Rock has learned to talk and thus we need notification permission
     
-    if (self.rock.age >= 5) {
+    if (self.rock.age >= minimumTalkAge) {
     
     UIUserNotificationType types = UIUserNotificationTypeBadge |
     UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
@@ -124,6 +128,7 @@ static float const initialHeight = 40; // in pixels
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
         
     //What if the user doesn't accept notifications and then goes into the settings and accepts? Then these methods below wont trigger? Or will they?
+    //I don't think so, so, MAYBE, onViewWillAppear we check if the notifications have been created, if not, check if notifications have been approved, if so, then create the notifications
     
         [self.rock createLetterANotification];
         [self.rock createLetterBNotification];

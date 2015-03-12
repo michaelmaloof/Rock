@@ -22,7 +22,6 @@
 @property bool hasSentZ;
 @property bool hasRockLearnedToTalk;
 
-
 -(void)loadFirstDateDefault;
 -(void)setFirstDateDefault;
 -(void)setRockAge;
@@ -33,8 +32,6 @@
 -(void)createLetterCDEFNotification;
 -(void)createLetterGHIJNotification;
 -(void)createLetterZNotification;
-    
-
 
 
 @end
